@@ -19,7 +19,11 @@ class CustomSearchBar extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: CustomTextField(hintText: hintText, label: ''),
+          child: CustomTextField(
+            hintText: hintText,
+            label: '',
+            controller: TextEditingController(),
+          ),
         ),
         SizedBox(width: 15),
         CustomCircleButton(onPressed: onSearch, icon: icon),

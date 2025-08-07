@@ -43,7 +43,7 @@ class GoalTrackingCard extends StatelessWidget {
                 Spacer(),
                 CustomCardPositiveStyle(title: 'complete'),
                 SizedBox(width: 10),
-                Icon(Icons.menu),
+                Icon(Icons.more_vert_rounded),
               ],
             ),
             const SizedBox(height: 16),

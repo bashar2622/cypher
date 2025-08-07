@@ -61,9 +61,27 @@ class ShimmerFirstCard extends StatelessWidget {
             const SizedBox(height: 24),
             Row(
               children: [
-                Expanded(child: Container(height: 40, color: Colors.white)),
+                Expanded(
+                  child: Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
                 const SizedBox(width: 16),
-                Expanded(child: Container(height: 40, color: Colors.white)),
+                Expanded(
+                  child: Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
@@ -81,11 +99,36 @@ class ShimmerSecondCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
-          Container(height: 26, width: 26, color: Colors.white),
+          Container(
+            height: 26,
+            width: 26,
+            decoration: BoxDecoration(
+              color: Colors.white,
+
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
           const SizedBox(width: 16),
-          Expanded(child: Container(height: 14, color: Colors.white)),
+          Expanded(
+            child: Container(
+              height: 14,
+              decoration: BoxDecoration(
+                color: Colors.white,
+
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
           const SizedBox(width: 16),
-          Container(height: 26, width: 80, color: Colors.white),
+          Container(
+            height: 26,
+            width: 80,
+            decoration: BoxDecoration(
+              color: Colors.white,
+
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
         ],
       ),
     );
