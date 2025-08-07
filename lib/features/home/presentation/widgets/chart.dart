@@ -114,8 +114,92 @@ class _LineChartSample2State extends State<LineChartSample2> {
     return Text(text, style: style, textAlign: TextAlign.left);
   }
 
+  // LineChartData mainData() {
+  //   return LineChartData(
+  //     gridData: FlGridData(
+  //       show: true,
+  //       drawVerticalLine: true,
+  //       horizontalInterval: 1,
+  //       verticalInterval: 1,
+  //       getDrawingHorizontalLine: (value) {
+  //         return FlLine(color: ColorsPalette.fiveColor, strokeWidth: 1);
+  //       },
+  //       getDrawingVerticalLine: (value) {
+  //         return const FlLine(color: ColorsPalette.fiveColor, strokeWidth: 1);
+  //       },
+  //     ),
+  //     titlesData: FlTitlesData(
+  //       show: true,
+  //       rightTitles: const AxisTitles(
+  //         sideTitles: SideTitles(showTitles: false),
+  //       ),
+  //       topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+  //       bottomTitles: AxisTitles(
+  //         sideTitles: SideTitles(
+  //           showTitles: true,
+  //           reservedSize: 30,
+  //           interval: 1,
+  //           getTitlesWidget: bottomTitleWidgets,
+  //         ),
+  //       ),
+  //       leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+  //     ),
+  //     borderData: FlBorderData(show: false),
+  //     minX: 0,
+  //     maxX: 7,
+  //     minY: 0,
+  //     maxY: 6,
+  //     lineBarsData: [
+  //       LineChartBarData(
+  //         spots: const [
+  //           FlSpot(0, 3),
+  //           FlSpot(2.6, 2),
+  //           FlSpot(4.9, 5),
+  //           FlSpot(6.8, 3.1),
+  //           FlSpot(8, 4),
+  //           FlSpot(9.5, 3),
+  //           FlSpot(11, 4),
+  //         ],
+  //         isCurved: true,
+  //         gradient: LinearGradient(colors: gradientColors),
+  //         barWidth: 5,
+  //         isStrokeCapRound: true,
+  //         dotData: const FlDotData(show: false),
+  //         belowBarData: BarAreaData(
+  //           show: true,
+  //           gradient: LinearGradient(
+  //             colors: gradientColors
+  //                 .map((color) => color.withValues(alpha: 0.3))
+  //                 .toList(),
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+
   LineChartData mainData() {
     return LineChartData(
+      lineTouchData: LineTouchData(
+        handleBuiltInTouches: true,
+        touchTooltipData: LineTouchTooltipData(
+          // ignore: deprecated_member_use
+          // tooltipBgColor: ColorsPalette.primaryColor.withOpacity(0.8),
+          getTooltipItems: (touchedSpots) {
+            return touchedSpots.map((LineBarSpot touchedSpot) {
+              final day = touchedSpot.x;
+              final value = touchedSpot.y;
+              return LineTooltipItem(
+                'Day: ${_getDayLabel(day)}\nValue: ${value.toStringAsFixed(1)}',
+                const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }).toList();
+          },
+        ),
+      ),
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
@@ -137,7 +221,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-
             reservedSize: 30,
             interval: 1,
             getTitlesWidget: bottomTitleWidgets,
@@ -146,7 +229,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
         leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ),
       borderData: FlBorderData(show: false),
-
       minX: 0,
       maxX: 7,
       minY: 0,
@@ -155,23 +237,23 @@ class _LineChartSample2State extends State<LineChartSample2> {
         LineChartBarData(
           spots: const [
             FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
+            FlSpot(1, 2),
+            FlSpot(2, 5),
+            FlSpot(3, 3.1),
+            FlSpot(4, 4),
+            FlSpot(5, 3),
+            FlSpot(6, 4),
           ],
           isCurved: true,
           gradient: LinearGradient(colors: gradientColors),
           barWidth: 5,
           isStrokeCapRound: true,
-          dotData: const FlDotData(show: false),
+          dotData: const FlDotData(show: true),
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
               colors: gradientColors
-                  .map((color) => color.withValues(alpha: 0.3))
+                  .map((color) => color.withOpacity(0.3))
                   .toList(),
             ),
           ),
@@ -271,5 +353,26 @@ class _LineChartSample2State extends State<LineChartSample2> {
         ),
       ],
     );
+  }
+}
+
+String _getDayLabel(double value) {
+  switch (value.toInt()) {
+    case 0:
+      return 'Mon';
+    case 1:
+      return 'Tue';
+    case 2:
+      return 'Wed';
+    case 3:
+      return 'Thu';
+    case 4:
+      return 'Fri';
+    case 5:
+      return 'Sat';
+    case 6:
+      return 'Sun';
+    default:
+      return '';
   }
 }
